@@ -46,7 +46,8 @@ module.exports = function( grunt , undefined ) {
 			colors: {},
 			pngfolder: "png",
 			template: "",
-			previewTemplate: path.join( __dirname, "..", "example", "preview.hbs" )
+			previewTemplate: path.join( __dirname, "..", "example", "preview.hbs" ),
+			icononly: false
 		});
 
 		// just a quick starting message
@@ -73,12 +74,14 @@ module.exports = function( grunt , undefined ) {
 		// create the output directory
 		grunt.file.mkdir( config.dest );
 
-		// minify the source of the grunticon loader and write that to the output
-		grunt.log.writeln( "grunticon now minifying the stylesheet loader source." );
-		var banner = grunt.file.read( config.files.banner );
-		var min = banner + "\n" + uglify.minify( config.files.loader ).code;
-		grunt.file.write( path.join( config.dest, config.loadersnippet ), min );
-		grunt.log.writeln( "grunticon loader file created." );
+		if(config.icononly !== true) {
+			// minify the source of the grunticon loader and write that to the output
+			grunt.log.writeln( "grunticon now minifying the stylesheet loader source." );
+			var banner = grunt.file.read( config.files.banner );
+			var min = banner + "\n" + uglify.minify( config.files.loader ).code;
+			grunt.file.write( path.join( config.dest, config.loadersnippet ), min );
+			grunt.log.writeln( "grunticon loader file created." );
+		}
 
 		var svgToPngOpts = {
 			pngfolder: pngfolder,
@@ -150,11 +153,13 @@ module.exports = function( grunt , undefined ) {
 				done( false );
 			}
 
-			grunt.log.writeln( "Grunticon now creating Preview File" );
-			try {
-				helper.createPreview(tmp, config.dest, config.defaultWidth, config.defaultHeight, min, config.previewhtml, config.cssprefix, config.previewTemplate);
-			} catch(er) {
-				grunt.fatal(er);
+			if(config.icononly !== true) {
+				grunt.log.writeln( "Grunticon now creating Preview File" );
+				try {
+					helper.createPreview(tmp, config.dest, config.defaultWidth, config.defaultHeight, min, config.previewhtml, config.cssprefix, config.previewTemplate);
+				} catch(er) {
+					grunt.fatal(er);
+				}
 			}
 
 

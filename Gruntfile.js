@@ -80,7 +80,9 @@ module.exports = function(grunt) {
 					},
 
 					template: "example/default-css.hbs",
-					previewTemplate: "example/preview-custom.hbs"
+					previewTemplate: "example/preview-custom.hbs",
+					// Optionally only output the icons and css, defaults to false
+					icononly: false
 
 				}
 			}

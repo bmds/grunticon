@@ -139,7 +139,7 @@ a string to prefix all css classes with.
 #### options.customselectors
 Type: `Object`
 
-Allows you to specify custom selectors (in addition to the generated `cssprefix + filename - extension` class) for individual files. 
+Allows you to specify custom selectors (in addition to the generated `cssprefix + filename - extension` class) for individual files.
 
 Example:
 
@@ -170,6 +170,12 @@ Type: `String`
 Default value: `"300px"`
 
 similar to defaultWidth, but for height
+
+#### options.icononly
+Type: `Boolean`
+Default value: `false`
+
+Allows you to specify that only the css and image files are output
 
 #### options.previewTemplate
 Type: `String`
@@ -247,7 +253,7 @@ Browsers that render the SVG data url stylesheet:
 - Chrome 14+ (maybe older too?)
 - Safari 4+ (maybe older too?)
 - Firefox 3.6+ (maybe older too?)
-- Opera 15+ 
+- Opera 15+
 - iOS 3+ Safari and Chrome
 - Android 4.0 Chrome (caveat: SVG icons do not scale in vector, but do appear to draw in high-resolution)
 - Android 4.0 ICS Browser
@@ -278,13 +284,13 @@ One of the great benefits to data uris is the ability to compress the images hea
 
 ### Creating SVG Artwork
 
-The workflow we've been using so far involves creating a new Illustrator file with the artboard set to the desired size of the icon you want set in the CSS. 
+The workflow we've been using so far involves creating a new Illustrator file with the artboard set to the desired size of the icon you want set in the CSS.
 
 Export the artwork by choosing File > Save as...  In the dialog, choose "SVG" as the format and enter a name for the file (this wil be used as your class name later, so keep it free of any disallowed CSS class characters like `.`, `{`, `(`, `)`, etc.
 
-In the Save SVG dialog that opens up, there are lots of options. SVG has a ton of formats, so here are a few tips we've learned. 
+In the Save SVG dialog that opens up, there are lots of options. SVG has a ton of formats, so here are a few tips we've learned.
 
-- SVG Profile: Seems like SVG 1.1 Tiny is really well supported across even older mobile platforms so if you have simple artwork that doesn't use gradients or opacity this will yield a smaller and more compatible graphic. If you want to use all the fancy effects, save artwork as SVG 1.1. 
+- SVG Profile: Seems like SVG 1.1 Tiny is really well supported across even older mobile platforms so if you have simple artwork that doesn't use gradients or opacity this will yield a smaller and more compatible graphic. If you want to use all the fancy effects, save artwork as SVG 1.1.
 - Type: Convert to outline before export.
 - Subsetting: None, I usually convert all text to outlines ahead of time
 - Images: Embed
